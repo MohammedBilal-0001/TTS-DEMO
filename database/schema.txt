@@ -1,0 +1,27 @@
+DATABASE SCHEMA:
+SCHEMA (USE THESE TABLES ONLY):\n  - Customers(CustomerID (TEXT), CompanyName (TEXT),ContactName (TEXT), City (TEXT),Phone (TEXT), Country (TEXT))\n    Row Example:(ALFKI,\t'Alfreds Futterkiste',\t'Maria Anders',\t'Berlin',\t'030-0074321',\t'Germany')\n  - Orders(OrderID (INTEGER), CustomerID (TEXT),EmployeeID (INTEGER), OrderDate (DATETIME),RequiredDate (DATETIME), ShippedDate (DATETIME),Freight (NUMERIC), ShipCity(TEXT), ShipCountry (TEXT))\n    Row Example:(10248,\t'VINET',\t5,\t'2016-07-04',\t'2016-08-01',\t'2016-07-16', 16.75, 'Reims', 'France')\n  - Products(ProductID (INTEGER), ProductName (TEXT), SupplierID (INTEGER), CategoryID (INTEGER), UnitPrice(NUMERIC), UnitsInStock (INTEGER))\n    Row Example:(1,\t'Chais',\t1,\t1,\t18.00,\t100)\n  - OrderDetails(OrderID (INTEGER) , ProductID (INTEGER), UnitPrice (NUMERIC), Quantity (INTEGER), Discount (REAL))\n    Row Example:(10248,\t11,\t14.00,\t12,\t0.05)\n  - Employees(EmployeeID (INTEGER), LastName (TEXT), FirstName (TEXT),Title (TEXT), BirthDate (DATE), HireDate (DATE), City (TEXT), Address (TEXT), Country (TEXT))\n    Row Example:(1,\t'Davolio',\t'Nancy',\t'Sales Representative', '1968-12-08',\t'1992-05-01',\t'Seattle',\t'507 - 20th Ave. E. Apt. 2A',\t'USA')\n  - Categories(CategoryID (INTEGER), CategoryName (TEXT), Description (TEXT))\n    Row Example:(1,\t'Beverages',\t'Soft drinks, coffees, teas, beers, and ales')\n  - Suppliers(SupplierID (INTEGER), CompanyName (TEXT), ContactName (TEXT), City (TEXT), Country (TEXT)\n    Row Example:(1,\t'Exotic Liquid',\t'Charlotte Cooper',\t'London',\t'UK')
+
+USAGE GUIDELINES:
+- Database type: SQLite
+- Use proper SQLite syntax
+- Date format: YYYY-MM-DD
+- Available regions: North, South, East, West
+- Available products: Laptop, Phone, Tablet, Monitor, Keyboard, Mouse, Headphones, Speaker
+- Revenue range: 100.00 to 5000.00 USD
+- Use SUM(), AVG(), COUNT(), MAX(), MIN() for aggregations
+- Use GROUP BY for categorical analysis
+- Use ORDER BY for sorting results
+
+SQLITE DATE FUNCTIONS:
+- Use STRFTIME('%Y', order_date) to extract year from date
+- Use STRFTIME('%m', order_date) to extract month from date  
+- Use STRFTIME('%Y-%m', order_date) to get year-month
+- Use STRFTIME('%Y-%m-%d', order_date) for full date formatting
+- DO NOT use YEAR(), MONTH(), DATE() functions - they don't exist in SQLite
+
+SAMPLE QUERIES:
+- SELECT region, SUM(revenue) FROM orders GROUP BY region
+- SELECT product, AVG(revenue) FROM orders GROUP BY product  
+- SELECT COUNT(*) FROM customers WHERE region = 'North'
+- SELECT STRFTIME('%Y', order_date) AS year, SUM(revenue) FROM orders GROUP BY STRFTIME('%Y', order_date)
+- SELECT o.region, COUNT(o.id) as orders, COUNT(c.id) as customers FROM orders o LEFT JOIN customers c ON o.region = c.region GROUP BY o.region

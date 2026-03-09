@@ -1,0 +1,79 @@
+{
+  "database_schema": {
+    "tables": {
+      "orders": {
+        "description": "Sales orders table containing transaction data",
+        "columns": {
+          "id": {
+            "type": "INTEGER",
+            "constraints": "PRIMARY KEY",
+            "description": "Unique order identifier"
+          },
+          "product": {
+            "type": "TEXT",
+            "description": "Product name (Laptop, Phone, Tablet, Monitor, Keyboard, Mouse, Headphones, Speaker)"
+          },
+          "region": {
+            "type": "TEXT", 
+            "description": "Sales region (North, South, East, West)"
+          },
+          "revenue": {
+            "type": "REAL",
+            "description": "Revenue amount in USD (floating point number)"
+          },
+          "order_date": {
+            "type": "DATE",
+            "description": "Order date in YYYY-MM-DD format"
+          }
+        },
+        "sample_queries": [
+          "SELECT COUNT(*) FROM orders",
+          "SELECT region, SUM(revenue) FROM orders GROUP BY region",
+          "SELECT product, AVG(revenue) FROM orders GROUP BY product"
+        ]
+      },
+      "customers": {
+        "description": "Customer information table",
+        "columns": {
+          "id": {
+            "type": "INTEGER",
+            "constraints": "PRIMARY KEY", 
+            "description": "Unique customer identifier"
+          },
+          "name": {
+            "type": "TEXT",
+            "description": "Customer name"
+          },
+          "region": {
+            "type": "TEXT",
+            "description": "Customer region (North, South, East, West)"
+          }
+        },
+        "sample_queries": [
+          "SELECT COUNT(*) FROM customers",
+          "SELECT region, COUNT(*) FROM customers GROUP BY region"
+        ]
+      }
+    },
+    "relationships": [
+      {
+        "description": "Orders and customers can be joined on region to analyze customer behavior by region",
+        "join_example": "SELECT o.region, COUNT(o.id) as orders, COUNT(c.id) as customers FROM orders o LEFT JOIN customers c ON o.region = c.region GROUP BY o.region"
+      }
+    ],
+    "usage_notes": {
+      "database_type": "SQLite",
+      "date_format": "YYYY-MM-DD",
+      "regions": ["North", "South", "East", "West"],
+      "products": ["Laptop", "Phone", "Tablet", "Monitor", "Keyboard", "Mouse", "Headphones", "Speaker"],
+      "revenue_range": "100.00 to 5000.00 USD",
+      "query_guidelines": [
+        "Use proper SQLite syntax",
+        "Always include table aliases for joins",
+        "Use SUM(), AVG(), COUNT(), MAX(), MIN() for aggregations",
+        "Use GROUP BY for categorical analysis",
+        "Use ORDER BY for sorting results"
+      ]
+    }
+  }
+}
