@@ -20,10 +20,13 @@ A demonstration system that showcases AI agent orchestration using LangGraph for
 - **FastAPI**: REST API server
 - **LangGraph**: Agent orchestration framework
 - **LangChain**: LLM integration
+- **LangChain OpenAI**: OpenAI-compatible API integration
 - **SQLAlchemy**: Database ORM
 - **Pandas**: Data manipulation
 - **Pydantic**: State validation
 - **SQLite**: Database
+- **Uvicorn**: ASGI server
+- **Python-dotenv**: Environment variable management
 
 ### Frontend
 - **Next.js 14**: React framework
@@ -31,13 +34,14 @@ A demonstration system that showcases AI agent orchestration using LangGraph for
 - **Tailwind CSS**: Styling
 - **Recharts**: Chart library
 - **Lucide React**: Icons
+- **Axios**: HTTP client
 
 ## Quick Start
 
 ### Prerequisites
 - Python 3.10+
 - Node.js 18+
-- Local LLM endpoint (e.g., LM Studio) running on `http://localhost:1234/v1`
+- OpenAI-compatible API endpoint (e.g., LM Studio, Ollama) running on `http://localhost:1234/v1`
 
 ### Backend Setup
 
@@ -112,8 +116,10 @@ Process a natural language query.
     "y": "revenue",
     "title": "Revenue by Region"
   },
+  "query_results": {},
   "logs": ["[Router] Intent detected: database_query", ...],
-  "success": true
+  "success": true,
+  "error": ""
 }
 ```
 
@@ -180,19 +186,27 @@ The system uses a predefined SQLite schema with sample data:
 Text-to-SQL-orc/
 ├── backend/
 │   ├── state.py          # LangGraph state definition
+│   ├── state_simple.py   # Simplified state implementation
 │   ├── agents.py         # AI agents
 │   ├── tools.py          # SQL executor and routing logic
 │   ├── workflow.py       # LangGraph workflow
 │   └── server.py         # FastAPI server
 ├── database/
-│   └── setup.py          # Database initialization
+│   ├── setup.py          # Database initialization
+│   ├── schema.json       # Database schema definition
+│   └── analytics.db      # SQLite database file
 ├── frontend/
 │   └── src/
 │       ├── app/          # Next.js app
 │       └── components/   # React components
+├── testfiles/            # Test and debugging scripts
+├── Analysis/             # Project analysis documents
+├── Research/             # Research and documentation
+├── Report/               # Project reports
 ├── doc/
 │   └── prd.md           # Product Requirements Document
-├── requirements.txt
+├── requirements.txt      # Python dependencies
+├── .env.example         # Environment variables template
 └── README.md
 ```
 
@@ -206,6 +220,12 @@ Text-to-SQL-orc/
 
 1. Add new chart type to `frontend/src/components/ChartVisualization.tsx`
 2. Update visualizer agent prompt in `backend/agents.py`
+
+## Demo Recording
+
+Watch a complete demonstration of the system in action:
+
+**[View Demo Recording](https://drive.google.com/file/d/1077emmUWlgY8so55SxMnuHHBjU4PgXTj/view?usp=sharing)**
 
 ## Demo Scenarios
 
