@@ -4,7 +4,9 @@
 *.sqlite3
 *.db-journal
 *.sqlite-journal
-
+analytics.db
+schema.json
+setup.py
 # Python cache
 __pycache__/
 *.pyc

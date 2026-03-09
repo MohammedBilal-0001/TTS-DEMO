@@ -56,12 +56,7 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-3. Initialize the database:
-```bash
-python database/setup.py
-```
-
-4. Start the backend server:
+3. Start the backend server:
 ```bash
 python backend/server.py
 ```
@@ -192,9 +187,9 @@ Text-to-SQL-orc/
 │   ├── workflow.py       # LangGraph workflow
 │   └── server.py         # FastAPI server
 ├── database/
-│   ├── setup.py          # Database initialization
 │   ├── schema.json       # Database schema definition
-│   └── analytics.db      # SQLite database file
+│   ├── analytics.db      # SQLite database file
+│   └── northwind_simplified.db  # Sample database
 ├── frontend/
 │   └── src/
 │       ├── app/          # Next.js app
